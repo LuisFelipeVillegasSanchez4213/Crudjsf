@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:comp="http://xmlns.jcp.org/jsf/composite/comp">
+
+	<h:head>
+		<f:facet name="first">
+			<meta charset="UTF-8"/>
+			<meta name="viewport"  content="width=device-width, initial-scale=1" />
+		</f:facet>
+		<title>CRUD Empleados</title>
+		<h:outputStylesheet library="css" name="crud.css"/>
+	</h:head>
+    <h:body>
+    	<h:form id="form1">
+    		<comp:messageDialog/>
+    		<comp:ajaxStatus/>
+    		
+    		<h1>CRUD Empleados</h1>
+    		
+    		<p:commandButton action="#{empleadoJsfBean.createNewCrudObj}" value="Nuevo Empleado" process="@this" update="pgForm" resetValues="true"/>
+			<a href="departamento.xhtml">Crear departamento</a>
+    	
+    		<p:fieldset legend="Formulario" styleClass="myfieldset">
+    		  <h:panelGroup id="pgForm" layout="block" styleClass="ui-g">
+    			<div class="ui-g-12 ui-lg-1">
+    				<p:outputLabel value="Id" />
+    				<p:inputText id="id" value="#{empleadoJsfBean.empleado.id}" readonly="true"/>
+    			</div>
+    			<div class="ui-g-12 ui-lg-6">
+					<h:selectOneMenu value="#{empleadoJsfBean.empleado.documento_tipo}" required="true" requiredMessage="el tipo de documento es requerido">
+						<f:selectItem itemValue="--" itemLabel="---Seleccione un Tipo---" />
+						<f:selectItem itemValue="RC" itemLabel="RC" />
+						<f:selectItem itemValue="TI" itemLabel="TI" />
+						<f:selectItem itemValue="CC" itemLabel="CC" />
+						<f:selectItem itemValue="CE" itemLabel="CE" />
+					</h:selectOneMenu>
+    			</div>
+				  <div class="ui-g-12 ui-lg-6">
+					  <p:outputLabel value="Numero de documento" for="documento_numero"/>
+					  <p:inputText id="documento_numero" value="#{empleadoJsfBean.empleado.documento_numero}" required="true" requiredMessage="el numero de documento es requerido"/>
+				  </div>
+				  <div class="ui-g-12 ui-lg-6">
+					  <p:outputLabel value="Nombres" for="name"/>
+					  <p:inputText id="name" value="#{empleadoJsfBean.empleado.nombre}" required="true" requiredMessage="el nombre es requerido"/>
+				  </div>
+				  <div class="ui-g-12 ui-lg-6">
+					  <p:outputLabel value="Apellidos" for="apellidos"/>
+					  <p:inputText id="apellidos" value="#{empleadoJsfBean.empleado.apellidos}" required="true" requiredMessage="el apellido es requerido"/>
+				  </div>
+				  <div class="ui-g-12 ui-lg-6">
+					  <h:selectOneMenu value="#{empleadoJsfBean.empleado.departamento}" required="true" requiredMessage="el departamento es requerido">
+						  <f:selectItem itemValue="--" itemLabel="---Seleccione un Tipo---" />
+						  <f:selectItem itemValue="#{departamentoJsfBean.departamento.id_departamento}" itemLabel="#{departamentoJsfBean.departamento.nombre_departamento}" />
+					  </h:selectOneMenu>
+				  </div>
+				  <div class="ui-g-12 ui-lg-6">
+					  <p:outputLabel value="Ciudad" for="ciudad"/>
+					  <p:inputText id="ciudad" value="#{empleadoJsfBean.empleado.ciudad}" required="true" requiredMessage="la ciudad es requerida"/>
+				  </div>
+				  <div class="ui-g-12 ui-lg-6">
+					  <p:outputLabel value="Direccion" for="direccion"/>
+					  <p:inputText id="direccion" value="#{empleadoJsfBean.empleado.direccion}" required="true" requiredMessage="la direccion es requerida"/>
+				  </div>
+    			<div class="ui-g-12 ui-lg-5">
+    				<p:outputLabel value="Email" for="email" />
+    				<p:inputText id="email" value="#{empleadoJsfBean.empleado.email}" required="true" requiredMessage="el email es requerido"/>
+    			</div>
+				  <div class="ui-g-12 ui-lg-6">
+					  <p:outputLabel value="Telefono" for="telefono"/>
+					  <p:inputText id="telefono" value="#{empleadoJsfBean.empleado.telefono}" required="true" requiredMessage="el telefono es requerida"/>
+				  </div>
+
+    			<div class="ui-g-12 ui-lg-1">
+    				<p:commandButton id="saveBtn" action="#{empleadoJsfBean.save}" value="Save" process="pgForm" update="pgForm pgList"/>
+    			</div>
+    			<p:defaultCommand target="saveBtn" scope="pgForm"/>
+    		  </h:panelGroup>
+    		</p:fieldset>
+    		
+    		<h:panelGroup id="pgList" layout="block">
+    		  <p:fieldset legend="Lista de empleados" styleClass="myfieldset">
+    		  	<p:dataTable var="p" value="#{empleadoJsfBean.people}" emptyMessage="No one found." styleClass="mydatatable">
+    		  		<p:column  headerText="ID" priority="3">
+ 						<h:outputText  value="#{p.id}"/>   		  		
+    		  		</p:column>
+    		  		
+    		  		<p:column headerText="Tipo dedocumento" priority="0">
+    		  			<h:outputText value="#{p.documento_tipo}"/>
+    		  		</p:column>
+					<p:column headerText="Numero de dedocumento" priority="0">
+						<h:outputText value="#{p.documento_numero}"/>
+					</p:column>
+					<p:column headerText="Nombres" priority="0">
+						<h:outputText value="#{p.nombre}"/>
+					</p:column>
+					<p:column headerText="Apellidos" priority="0">
+						<h:outputText value="#{p.apellidos}"/>
+					</p:column>
+					<p:column headerText="Departamento" priority="0">
+						<h:outputText value="#{p.departamento}"/>
+					</p:column>
+					<p:column headerText="Ciudad" priority="0">
+						<h:outputText value="#{p.ciudad}"/>
+					</p:column>
+					<p:column headerText="Direccion" priority="0">
+						<h:outputText value="#{p.direccion}"/>
+					</p:column>
+    		  		<p:column headerText="Email" priority="2">
+    		  			<h:outputText  value="#{p.email}"/>
+    		  		</p:column>
+					<p:column headerText="Telefono" priority="0">
+						<h:outputText value="#{p.telefono}"/>
+					</p:column>
+					<p:column headerText="Fecha de creacion" priority="0">
+						<h:outputText value="#{p.fecha_hora_crea}"/>
+					</p:column>
+					<p:column headerText="Fecha de modificacion" priority="0">
+						<h:outputText value="#{p.fecha_hora_modifica}"/>
+					</p:column>
+    		  		
+    		  		<p:column headerText="Acciones" priority="0" style="text-align: center; width: 70px">
+    		  			<p:commandLink id="editLink" action="#{empleadoJsfBean.editCrudObj(p)}" resetValues="true"
+									   title="Editar" style="top: 1px;position:relative;"
+									   update="form1:pgForm" process="@this" oncomplete="window.scrollTo(0,0);">
+    		  				<i class="fa fa-pencil-square-o myactionlink myeditlink"></i>
+    		  			</p:commandLink>
+    		  			
+    		  			<p:commandLink id="deleteLink" action="#{empleadoJsfBean.deleteCrudObj(p)}" resetValues="true"
+									   title="Eliminar" style=" text-decoration: none"
+									   update="form1:pgForm form1:pgList" process="@this">
+                                <i class="fa fa-trash-o myactionlink mydellink"></i>
+                                <p:confirm header="Confirmacion" message="Esta seguro que desea borrar el siguiente registro?" icon="ui-icon-alert"/>
+                            </p:commandLink>      
+    		  		</p:column>
+    		  	</p:dataTable>	
+    		  	
+    		   <p:confirmDialog global="true" styleClass="mydlg">
+                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+                    </p:confirmDialog>        
+    		  </p:fieldset>
+    		</h:panelGroup>
+    	</h:form>
+    </h:body>
+      
+</html>

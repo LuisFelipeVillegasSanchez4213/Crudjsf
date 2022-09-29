@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Configuracion del archivo  -->
+
+<faces-config version="2.3"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_3.xsd">
+              
+    <application>  
+    	<!-- configuraciones regionales -->        
+		 <locale-config>
+        <default-locale>en</default-locale>
+        <supported-locale>nl</supported-locale>
+        <supported-locale>es</supported-locale>         
+        <supported-locale>de</supported-locale>         
+    </locale-config>
+    
+    <!-- Un paquete i18n global (para que no tenga que declarar < f: loadBundle > en cada vista): -->
+      <resource-bundle>
+            <base-name>i18n</base-name>
+            <var>i18n</var>
+        </resource-bundle>   
+        
+     <!-- integrar spring con JSF -->
+     <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>                      
+    </application>   
+    
+ 	<!-- manejador de excepciones globales -->
+ 	 <factory>                     
+        <exception-handler-factory>edu.jsf.exception.JsfExceptionHandlerFactory</exception-handler-factory>
+    </factory>  
+</faces-config>

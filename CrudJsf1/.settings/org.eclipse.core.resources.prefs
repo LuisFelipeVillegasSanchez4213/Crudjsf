@@ -1,0 +1,14 @@
+eclipse.preferences.version=1
+encoding//src/main/java=UFT-8
+encoding//src/main/java/edu/jsf/exception=
+encoding//src/main/java/edu/jsf/exception/JsfExceptionHandler.java=UTF-8
+encoding//src/main/java/edu/jsf/exception/JsfExceptionHandlerFactory.java=UTF-8
+encoding//src/main/java/edu/jsf/model=
+encoding//src/main/java/edu/jsf/service=
+encoding//src/main/java/edu/jsf/service/CrudService.java=UTF-8
+encoding//src/main/java/edu/jsf/util=
+encoding//src/main/java/edu/jsf/web=
+encoding//src/main/java/edu/jsf/web/BaseCrudJsfBean.java=UTF-8
+encoding//src/main/java/edu/jsf/web/PersonJsfBean.java=UTF-8
+encoding//src/main/resources=UFT-8
+encoding/<project>=UFT-8

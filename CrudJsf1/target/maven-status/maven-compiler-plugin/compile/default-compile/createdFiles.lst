@@ -1,0 +1,9 @@
+edu\jsf\model\Empleados.class
+edu\jsf\exception\JsfExceptionHandlerFactory.class
+edu\jsf\web\DepartamentoJsfBean.class
+edu\jsf\util\ReflectionUtil.class
+edu\jsf\service\CrudService.class
+edu\jsf\web\EmpleadoJsfBean.class
+edu\jsf\web\BaseCrudJsfBean.class
+edu\jsf\exception\JsfExceptionHandler.class
+edu\jsf\model\Departamentos.class
